@@ -22,13 +22,13 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
 
 # Set work directory
-WORKDIR /digital_advisor
+WORKDIR /app
 
 # Copy Poetry files
 COPY digital_advisor/pyproject.toml digital_advisor/poetry.lock* ./
 
 # Install dependencies
-RUN poetry install --only=main && rm -rf $POETRY_CACHE_DIR
+RUN poetry install --only=main --no-root && rm -rf $POETRY_CACHE_DIR
 
 # Copy application code
 COPY . .
