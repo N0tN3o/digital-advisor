@@ -34,7 +34,7 @@ RUN poetry install --only=main && rm -rf $POETRY_CACHE_DIR
 COPY . .
 
 # Expose port (adjust as needed)
-EXPOSE 8000
+EXPOSE 5000
 
 # Default command (adjust based on your app)
-CMD ["poetry", "run", "python", "-m", "run.py"]
+CMD ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]
