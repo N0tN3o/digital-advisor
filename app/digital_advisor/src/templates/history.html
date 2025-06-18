@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - Digital Advisor</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/history.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page history-page">
+    <header class="app-header">
+        <div class="app-header-content">
+            <a href="/index" class="app-brand">Digital Advisor</a>
+            <nav class="app-main-navigation">
+                <ul>
+                    <li><a href="/dashboard" class="nav-menu-link">Dashboard</a></li>
+                    <li><a href="/portfoliopage" class="nav-menu-link">Portfolio</a></li>
+                    <li><a href="/history" class="nav-menu-link active">History</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile-actions">
+                <div class="user-balance-info">
+                    <span id="currentUsername">Welcome, User!</span>
+                    <div class="user-account-balance">Balance: $<span id="currentBalance">10000.00</span></div>
+                </div>
+                <div class="profile-action-buttons">
+                    <a href="/profile" class="btn btn-icon" title="View Profile">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <button class="btn btn-danger" onclick="logoutUser()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="history-layout-wrapper">
+        <div class="history-main-content">
+            <!-- Page Header -->
+            <div class="history-header">
+                <h1>Transaction History</h1>
+                <p class="history-subtitle">View all your trading activities and portfolio changes</p>
+            </div>
+
+            <!-- Filters and Controls -->
+            <div class="history-controls">
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label for="transactionTypeFilter">Transaction Type:</label>
+                        <select id="transactionTypeFilter" class="form-select">
+                            <option value="all">All Transactions</option>
+                            <option value="buy">Buy Orders</option>
+                            <option value="sell">Sell Orders</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="tickerFilter">Stock Symbol:</label>
+                        <input type="text" id="tickerFilter" class="form-input" placeholder="e.g., TSLA, NVDA">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="dateRangeFilter">Date Range:</label>
+                        <select id="dateRangeFilter" class="form-select">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Last 7 Days</option>
+                            <option value="month">Last 30 Days</option>
+                            <option value="year">Last Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="history-actions">
+                    <button id="refreshHistoryBtn" class="btn btn-secondary">
+                        🔄 Refresh
+                    </button>
+                    <button id="exportHistoryBtn" class="btn btn-primary">
+                        📊 Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="history-summary">
+                <div class="summary-card">
+                    <div class="summary-label">Total Transactions</div>
+                    <div class="summary-value" id="totalTransactions">-</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Total Volume</div>
+                    <div class="summary-value" id="totalVolume">$-</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Buy Orders</div>
+                    <div class="summary-value buy-orders" id="buyOrders">-</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Sell Orders</div>
+                    <div class="summary-value sell-orders" id="sellOrders">-</div>
+                </div>
+            </div>
+
+            <!-- Transaction Table -->
+            <div class="history-table-container">
+                <div class="table-header">
+                    <h3>Transaction Details</h3>
+                    <div class="table-info">
+                        <span id="transactionCount">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="transaction-table-wrapper">
+                    <table class="transaction-table" id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="date">Date & Time ↕</th>
+                                <th class="sortable" data-sort="type">Type ↕</th>
+                                <th class="sortable" data-sort="ticker">Symbol ↕</th>
+                                <th class="sortable" data-sort="volume">Shares ↕</th>
+                                <th class="sortable" data-sort="price">Price ↕</th>
+                                <th class="sortable" data-sort="total">Total ↕</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-row">
+                                    <div class="loading-spinner"></div>
+                                    Loading transaction history...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table-pagination" id="tablePagination">
+                    <div class="pagination-info">
+                        <span id="paginationInfo">-</span>
+                    </div>
+                    <div class="pagination-controls">
+                        <button id="prevPageBtn" class="btn btn-outline" disabled>← Previous</button>
+                        <span class="page-numbers" id="pageNumbers"></span>
+                        <button id="nextPageBtn" class="btn btn-outline" disabled>Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">📈</div>
+                <h3>No Transactions Found</h3>
+                <p>You haven't made any trades yet, or no transactions match your current filters.</p>
+                <a href="/dashboard" class="btn btn-primary">Start Trading</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="static/js/common.js"></script>
+    <script src="static/js/history.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Advisor - NASDAQ 100 Trading Platform</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/landing.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="landing-page">
+    <!-- Common Header for Landing Page -->
+    <header class="app-header">
+        <div class="app-header-content">
+            <a href="/index" class="app-brand">Digital Advisor</a>
+            <nav class="app-main-navigation">
+                <ul>
+                    <li><a href="/index" class="nav-menu-link active">Home</a></li>
+                    <li><a href="#features-section" class="nav-menu-link">Features</a></li>
+                    <li><a href="#market-data-preview-section" class="nav-menu-link">Market Data</a></li>
+                    <li><a href="/login" class="nav-menu-link">Login</a></li>
+                    <li><a href="/register" class="nav-menu-link btn btn-success">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="main-hero-section">
+            <div class="main-hero-content">
+                <h1 class="app-brand-large">Digital Advisor</h1>
+                <p class="app-slogan">Trade stocks, get AI predictions, and manage your portfolio with our advanced trading platform.</p>
+
+                <div class="main-hero-actions">
+                    <a href="/login" class="btn btn-primary btn-large">Login</a>
+                    <a href="/register" class="btn btn-success btn-large">Create Account</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section page-container" id="features-section">
+            <div class="section-heading">
+                <h2>Why Choose Digital Advisor?</h2>
+                <p>Everything you need to succeed in stock trading</p>
+            </div>
+            <div class="feature-cards-grid">
+                <div class="feature-item-card">
+                    <div class="feature-item-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Real-Time Trading</h3>
+                    <p>Execute trades with live market data and instant portfolio updates.</p>
+                </div>
+
+                <div class="feature-item-card">
+                    <div class="feature-item-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10,8 16,12 10,16 10,8"></polygon>
+                        </svg>
+                    </div>
+                    <h3>AI Price Predictions</h3>
+                    <p>Get AI-powered predictions with confidence levels and market analysis.</p>
+                </div>
+
+                <div class="feature-item-card">
+                    <div class="feature-item-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Portfolio Management</h3>
+                    <p>Track your investments with detailed analytics and performance metrics.</p>
+                </div>
+
+                <div class="feature-item-card">
+                    <div class="feature-item-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <circle cx="12" cy="16" r="1"></circle>
+                            <path d="m7 11 0-5a5 5 0 0 1 10 0l0 5"></path>
+                        </svg>
+                    </div>
+                    <h3>Secure Platform</h3>
+                    <p>Bank-level security with encrypted transactions and data protection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Data Preview Section -->
+        <section class="market-data-preview-section" id="market-data-preview-section">
+            <div class="section-heading">
+                <h2>Live Market Data</h2>
+                <p>Real-time NASDAQ 100 stock prices</p>
+            </div>
+            <div class="market-data-grid page-container" id="marketDataGrid">
+                <!-- Market data will be loaded here by JavaScript -->
+            </div>
+            <div class="market-data-actions">
+                <a href="/login" class="btn btn-primary btn-large">Start Trading Now</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Common Footer -->
+    <footer class="main-footer">
+        <div class="main-footer-content">
+            <div class="footer-column">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="#features-section">Features</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Trading</h4>
+                <ul>
+                    <li><a href="#">NASDAQ 100</a></li>
+                    <li><a href="#">Market Data</a></li>
+                    <li><a href="#">Analytics</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-footer-bottom">
+            <p>&copy; 2025 Digital Advisor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="static/js/common.js"></script>
+    <script src="static/js/landing.js"></script>
+</body>
+</html>

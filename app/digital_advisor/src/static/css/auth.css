@@ -1,0 +1,237 @@
+/* static/css/auth.css */
+/* Specific styles for login and registration pages */
+
+.auth-page {
+    background: linear-gradient(135deg, #e0efff, #b9e0ff); /* Light blue gradient background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.auth-page-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Max width for the entire auth container */
+    background-color: #ffffff;
+    border-radius: 1rem; /* More rounded corners */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column; /* Default to column for small screens */
+    overflow: hidden; /* For rounded corners */
+}
+
+/* Auth Navigation */
+.auth-navigation {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fdfdfd;
+}
+
+.app-brand-small {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.auth-nav-links .auth-nav-link {
+    margin-left: 1.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.auth-nav-links .auth-nav-link:hover {
+    color: #3498db;
+}
+
+/* Auth Content (Form and Side Panel) */
+.auth-form-container {
+    display: flex;
+    flex-grow: 1; /* Allow it to take available space */
+}
+
+.auth-form-card {
+    flex: 1;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+}
+
+.auth-form-header {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form-header h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.auth-form-header p {
+    color: #6c757d;
+}
+
+.login-registration-form {
+    width: 100%;
+    max-width: 400px; /* Max width for the form itself */
+    margin: 0 auto; /* Center the form within its container */
+}
+
+.auth-card-footer {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.auth-card-footer p {
+    margin-bottom: 0.5rem;
+}
+
+/* Auth Side Panel */
+.auth-sidebar {
+    flex: 1;
+    background: linear-gradient(135deg, #3498db, #2980b9); /* Blue gradient for side panel */
+    color: #ffffff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sidebar-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.benefits-feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    text-align: left; /* Align list items to the left */
+    width: 100%;
+    max-width: 300px;
+}
+
+.benefits-feature-list li {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+/* For register page's specific features list */
+.benefits-feature-list .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.benefits-feature-list .feature-icon {
+    font-size: 1.8rem; /* Emoji size */
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.benefits-feature-list .feature-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+}
+
+.benefits-feature-list .feature-item p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.9);
+}
+
+.registration-bonus-info {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.registration-bonus-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+}
+
+.registration-bonus-info p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Responsive adjustments for auth pages */
+@media (min-width: 768px) {
+    .auth-page-wrapper {
+        flex-direction: column; /* Row layout for larger screens */
+    }
+
+    .auth-form-card {
+        padding: 3rem;
+        flex: 1.2; /* Give form slightly more space */
+    }
+
+    .auth-sidebar {
+        padding: 3rem;
+        flex: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .auth-form-container {
+        flex-direction: column; /* Stack form and sidebar on small screens */
+    }
+
+    .auth-sidebar {
+        order: -1; /* Move sidebar above form on mobile */
+        padding: 2rem 1.5rem;
+    }
+
+    .auth-form-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .auth-navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app-brand-small {
+        margin-bottom: 1rem;
+    }
+
+    .auth-nav-links .auth-nav-link {
+        margin: 0 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-card {
+        padding: 1.5rem;
+    }
+
+    .auth-sidebar {
+        padding: 1.5rem;
+    }
+
+    .auth-form-header h1 {
+        font-size: 1.7rem;
+    }
+
+    .login-registration-form {
+        max-width: none; /* Allow form to take full width of card */
+    }
+}

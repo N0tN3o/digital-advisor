@@ -1,0 +1,489 @@
+/* static/css/dashboard.css */
+/* Specific styles for the dashboard page */
+
+.dashboard-page {
+    background-color: #f0f2f5; /* Slightly darker background for dashboard */
+}
+
+.dashboard-layout-wrapper {
+    display: flex; /* Now directly holds left sidebar and main content */
+    flex-direction: row; /* Arrange children in a row */
+    min-height: calc(100vh - 80px); /* Adjust for header/footer if they are fixed height */
+    padding: 1.5rem; /* Overall padding for the dashboard */
+    gap: 2rem; /* Space between left sidebar and main content */
+}
+
+/* Left Sidebar for Live Market Data (Now a direct child of wrapper) */
+.dashboard-left-sidebar {
+    background-color: #ffffff; /* Apply background here */
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 2rem;
+    min-width: fit-content; /* Minimum width to prevent content crunching */
+}
+
+.refresh {
+    margin-bottom: 10px;
+}
+
+.live-market-data-section .section-heading {
+    text-align: left; /* Align section header left */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.live-market-data-section .section-heading h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.stock-search-input-group {
+    position: relative;
+    max-width: 400px;
+}
+
+.stock-search-field {
+    padding-right: 2.5rem; /* Space for icon */
+    border-radius: 25px; /* Pill shape */
+}
+
+.search-icon-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.live-stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.stock-item-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.8rem;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stock-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stock-info {
+    margin-bottom: 1rem;
+}
+
+.stock-symbol {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.stock-company-name {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.stock-price-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.current-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.price-change {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.price-change.positive {
+    color: #28a745;
+}
+
+.price-change.negative {
+    color: #dc3545;
+}
+
+.trade-predict-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.trade-predict-buttons .btn {
+    flex-grow: 1;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Main Content Area (holds AI Predictions and Right Sidebar) */
+.dashboard-main-content {
+    display: flex;
+    flex-grow: 1; /* Takes remaining space */
+    gap: 2rem; /* Space between AI predictions and right sidebar */
+}
+
+/* AI Predictions Section (Main Content - Takes most space within dashboard-main-content) */
+.ai-predictions-section {
+    flex: 4; /* Takes most space within dashboard-main-content */
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.ai-predictions-section h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Right Sidebar (now only portfolio) */
+.dashboard-sidebar {
+    flex: 1; /* Takes least space within dashboard-main-content */
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+}
+
+.dashboard-info-card h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Portfolio List */
+.user-portfolio-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+    gap: 1rem;
+}
+
+.portfolio-item:last-child {
+    border-bottom: none;
+}
+
+.portfolio-stock-symbol {
+    font-weight: 600;
+    color: #333;
+}
+
+.portfolio-holdings {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* AI Predictions List (moved under ai-predictions-section) */
+.ai-predictions-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.prediction-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prediction-item:last-child {
+    border-bottom: none;
+}
+
+.prediction-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.prediction-stock-symbol {
+    font-weight: 600;
+    color: #333;
+}
+
+.prediction-details {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.prediction-confidence {
+    font-weight: 600;
+}
+
+.prediction-confidence.high {
+    color: #28a745;
+}
+
+.prediction-confidence.medium {
+    color: #ffc107;
+}
+
+.prediction-confidence.low {
+    color: #dc3545;
+}
+
+/* Market Overview Summary - REMOVED CSS FOR THIS SECTION */
+
+/* Quick Actions */
+.dashboard-quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Trading Modal */
+.trade-stock-modal .modal-dialog {
+    max-width: 450px;
+}
+
+.trade-stock-modal .form-field-group {
+    margin-bottom: 1rem;
+}
+
+.trade-total-cost-display {
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    text-align: right;
+    width: 100%; /* Ensure it spans full width */
+    display: block; /* Ensure it behaves like a block element */
+}
+
+/* Prediction View Modal */
+.ai-prediction-modal .modal-dialog {
+    max-width: 600px;
+}
+
+.prediction-details-content {
+    background-color: #f9f9f9;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e0e0e0;
+}
+
+.prediction-details-content p {
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+
+.prediction-details-content strong {
+    color: #2c3e50;
+}
+
+.prediction-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* User Profile Modal */
+.user-profile-modal .modal-dialog {
+    max-width: 600px;
+}
+
+.profile-info-block {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.8rem;
+    padding: 1.2rem;
+    background-color: #f9f9f9;
+}
+
+.profile-info-block h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    border-bottom: 1px dashed #dcdcdc;
+    padding-bottom: 0.5rem;
+}
+
+.account-info-details .info-display-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.account-info-details .info-display-item label {
+    font-weight: 500;
+    color: #555;
+}
+
+.account-info-details .info-display-item span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.trading-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    text-align: center;
+}
+
+.stat-display-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.03);
+}
+
+.stat-value-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3498db;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.profile-action-buttons-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments for dashboard */
+@media (max-width: 992px) {
+    .dashboard-layout-wrapper {
+        flex-direction: column; /* Stack all major sections vertically */
+        gap: 1.5rem;
+    }
+
+    .dashboard-left-sidebar,
+    .dashboard-main-content {
+        flex: auto; /* Allow them to take full width when stacked */
+        padding: 1.5rem;
+    }
+
+    .dashboard-main-content {
+        flex-direction: column; /* Stack AI predictions and right sidebar */
+        gap: 1.5rem;
+    }
+
+    .live-market-data-section .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .live-market-data-section .section-heading h2 {
+        margin-bottom: 1rem;
+    }
+
+    .stock-search-input-group {
+        width: 100%;
+        max-width: none;
+    }
+
+    .dashboard-sidebar {
+        flex-direction: row; /* Make sidebar cards horizontal */
+        flex-wrap: wrap; /* Allow cards to wrap */
+        gap: 1.5rem;
+    }
+
+    .dashboard-info-card {
+        flex: 1 1 calc(50% - 0.75rem); /* Two cards per row */
+        margin-bottom: 0; /* Remove vertical margin if cards are horizontal */
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-layout-wrapper {
+        padding: 1rem;
+    }
+
+    .dashboard-main-content {
+        gap: 1.5rem;
+    }
+
+    .stock-item-card {
+        padding: 0.8rem;
+    }
+
+    .stock-symbol {
+        font-size: 1.1rem;
+    }
+
+    .current-price {
+        font-size: 1.4rem;
+    }
+
+    .price-change {
+        font-size: 1rem;
+    }
+
+    .trade-predict-buttons .btn {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .dashboard-info-card {
+        flex: 1 1 100%; /* Stack sidebar cards vertically on smaller mobile */
+    }
+
+    .modal-dialog {
+        padding: 1rem;
+    }
+
+    .modal-title-text {
+        font-size: 1.2rem;
+    }
+
+    .modal-close-button {
+        font-size: 1.7rem;
+    }
+
+    .profile-action-buttons-group, .prediction-action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .profile-action-buttons-group .btn, .prediction-action-buttons .btn {
+        width: 100%;
+    }
+}

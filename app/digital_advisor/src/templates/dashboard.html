@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Digital Advisor</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <header class="app-header">
+        <div class="app-header-content">
+            <a href="/index" class="app-brand">Digital Advisor</a>
+            <nav class="app-main-navigation">
+                <ul>
+                    <li><a href="#" class="nav-menu-link active">Dashboard</a></li>
+                    <li><a href="/portfoliopage" class="nav-menu-link">Portfolio</a></li>
+                    <li><a href="/history" class="nav-menu-link">History</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile-actions">
+                <div class="user-balance-info">
+                    <span id="currentUsername">Welcome, User!</span>
+                    <div class="user-account-balance">Balance: $<span id="currentBalance">10000.00</span></div>
+                </div>
+            <div class="profile-action-buttons">
+                <a href="/profile" class="btn btn-icon" title="View Profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+            <button class="btn btn-danger" onclick="logoutUser()">Logout</button>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-layout-wrapper">
+        <div class="dashboard-left-sidebar">
+            <div class="live-market-data-section">
+                <div class="section-heading">
+                    <h2>Live Market Data</h2>
+                    <div class="stock-search-input-group">
+                        <input type="text" class="form-input stock-search-field" id="stockSearchField" placeholder="Search stocks by symbol or company name...">
+                        <span class="search-icon-button">🔍</span>
+                    </div>
+                
+                    <button onclick="refreshMarketData()" class="btn btn-secondary refresh">🔄 Refresh</button>
+                </div>
+                <div class="live-stock-grid" id="liveStockGrid">
+                    </div>
+            </div>
+        </div>
+
+        <div class="dashboard-main-content">
+            <div class="ai-predictions-section info-card dashboard-info-card">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <h3 style="margin: 0;">AI Price Predictions</h3>
+                    <button id="refreshAIPredictionsBtn" title="Refresh AI Predictions" style="background: #f3f4f6; border: none; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 1em;">
+                        🔄 Refresh
+                    </button>
+                </div>
+                <div class="ai-predictions-list" id="aiPredictionsList">
+                    <p style="text-align: center; color: #6c757d;">Loading predictions...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-sidebar">
+                <div class="info-card dashboard-info-card">
+                    <h3>Portfolio</h3>
+                    <div class="user-portfolio-list" id="userPortfolioList">
+                        <p style="text-align: center; color: #6c757d;">Loading portfolio...</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="trade-stock-modal" class="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-header-section">
+                <h2 class="modal-title-text" id="tradingTitle">Trade Stock</h2>
+                <span class="modal-close-button" onclick="closeModal('trade-stock-modal')">&times;</span>
+            </div>
+
+            <div class="form-status-message" id="tradeStatusMessage"></div>
+
+            <div class="form-field-group">
+                <label class="field-label" for="tradeAction">Action</label>
+                <select class="form-select trade-action-select" id="tradeAction" name="tradeAction">
+                    <option value="buy">Buy</option>
+                    <option value="sell">Sell</option>
+                </select>
+            </div>
+            <div class="form-field-group">
+                <label class="field-label" for="tradeSharesInput">Number of Shares</label>
+                <input type="number" class="form-input trade-shares-input" id="tradeSharesInput" min="1" required>
+            </div>
+            <div class="form-field-group">
+                <label class="field-label">Total Cost</label>
+                <div class="trade-total-cost-display">
+                    $<span id="tradeTotalCostDisplay">0.00</span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="executeTrade()">Execute Trade</button>
+        </div>
+    </div>
+    <script src="static/js/common.js"></script>
+    <script src="static/js/dashboard.js"></script>
+</body>
+</html>

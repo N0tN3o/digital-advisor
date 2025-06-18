@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Digital Advisor</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/portfolio.css">
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page portfolio-page">
+    <header class="app-header">
+        <div class="app-header-content">
+            <a href="/index" class="app-brand">Digital Advisor</a>
+            <nav class="app-main-navigation">
+                <ul>
+                    <li><a href="/dashboard" class="nav-menu-link">Dashboard</a></li>
+                    <li><a href="/portfoliopage" class="nav-menu-link active">Portfolio</a></li>
+                    <li><a href="/history" class="nav-menu-link">History</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile-actions">
+                <div class="user-balance-info">
+                    <span id="currentUsername">Welcome, User!</span>
+                    <div class="user-account-balance">Balance: $<span id="currentBalance">10000.00</span></div>
+                </div>
+                <div class="profile-action-buttons">
+                    <a href="/profile" class="btn btn-icon" title="View Profile">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <button class="btn btn-danger" onclick="logoutUser()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="portfolio-layout-wrapper">
+        <div class="portfolio-main-content">
+            <!-- Portfolio Header -->
+            <div class="portfolio-header">
+                <div class="portfolio-title-section">
+                    <h1>My Portfolio</h1>
+                    <p class="portfolio-subtitle">Track your investments and portfolio performance</p>
+                </div>
+                <div class="portfolio-actions">
+                    <button id="refreshPortfolioBtn" class="btn btn-secondary">
+                        🔄 Refresh
+                    </button>
+                    <button id="rebalanceBtn" class="btn btn-primary" onclick="openRebalanceModal()">
+                        ⚖️ Rebalance
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portfolio Summary Cards -->
+            <div class="portfolio-summary">
+                <div class="summary-card total-value">
+                    <div class="summary-icon">💰</div>
+                    <div class="summary-content">
+                        <div class="summary-label">Total Portfolio Value</div>
+                        <div class="summary-value" id="totalPortfolioValue">$0.00</div>
+                        <div class="summary-change" id="totalPortfolioChange">+$0.00 (0.0%)</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card cash-balance">
+                    <div class="summary-icon">💵</div>
+                    <div class="summary-content">
+                        <div class="summary-label">Cash Balance</div>
+                        <div class="summary-value" id="cashBalance">$0.00</div>
+                        <div class="summary-change">Available for trading</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card holdings-count">
+                    <div class="summary-icon">📊</div>
+                    <div class="summary-content">
+                        <div class="summary-label">Holdings</div>
+                        <div class="summary-value" id="holdingsCount">0</div>
+                        <div class="summary-change" id="holdingsValue">Different stocks</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card daily-change">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-content">
+                        <div class="summary-label">Today's Change</div>
+                        <div class="summary-value" id="dailyChange">$0.00</div>
+                        <div class="summary-change" id="dailyChangePercent">0.0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Content Grid -->
+            <div class="portfolio-content-grid">
+                <!-- Holdings List -->
+                <div class="portfolio-holdings-section">
+                    <div class="section-header">
+                        <h3>Your Holdings</h3>
+                        <div class="section-controls">
+                            <select id="sortBy" class="form-select-small">
+                                <option value="value">Sort by Value</option>
+                                <option value="ticker">Sort by Symbol</option>
+                                <option value="change">Sort by Change</option>
+                                <option value="volume">Sort by Shares</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-holdings-container" id="userPortfolioList">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Loading portfolio...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Chart -->
+                <div class="portfolio-chart-section">
+                    <div class="section-header">
+                        <h3>Portfolio Composition</h3>
+                        <div class="chart-controls">
+                            <button id="pieChartBtn" class="chart-btn active">Pie Chart</button>
+                            <button id="performanceChartBtn" class="chart-btn">Performance</button>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="portfolioChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Holdings Table -->
+            <div class="detailed-holdings-section">
+                <div class="section-header">
+                    <h3>Detailed Holdings</h3>
+                    <div class="table-controls">
+                        <button id="exportHoldingsBtn" class="btn btn-outline">
+                            📊 Export CSV
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="holdings-table-container">
+                    <table class="holdings-table" id="holdingsTable">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="ticker">Symbol ↕</th>
+                                <th class="sortable" data-sort="volume">Shares ↕</th>
+                                <th class="sortable" data-sort="avgPrice">Avg Price ↕</th>
+                                <th class="sortable" data-sort="currentPrice">Current Price ↕</th>
+                                <th class="sortable" data-sort="value">Market Value ↕</th>
+                                <th class="sortable" data-sort="gainLoss">Gain/Loss ↕</th>
+                                <th class="sortable" data-sort="percentage">% Change ↕</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdingsTableBody">
+                            <tr>
+                                <td colspan="8" class="loading-row">
+                                    <div class="loading-spinner"></div>
+                                    Loading holdings...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-portfolio" id="emptyPortfolio" style="display: none;">
+                <div class="empty-icon">📈</div>
+                <h3>Your Portfolio is Empty</h3>
+                <p>Start building your investment portfolio by making your first trade.</p>
+                <a href="/dashboard" class="btn btn-primary">Start Trading</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Stock Detail Modal -->
+    <div id="stock-detail-modal" class="modal-overlay">
+        <div class="modal-dialog large-modal">
+            <div class="modal-header-section">
+                <h2 class="modal-title-text" id="stockDetailTitle">Stock Details</h2>
+                <span class="modal-close-button" onclick="closeModal('stock-detail-modal')">&times;</span>
+            </div>
+
+            <div class="stock-detail-content" id="stockDetailContent">
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_chart"></div>
+                </div>
+                
+                <div class="stock-detail-info">
+                    <div class="stock-metrics">
+                        <div class="metric">
+                            <label>Current Price:</label>
+                            <span id="detailCurrentPrice">$0.00</span>
+                        </div>
+                        <div class="metric">
+                            <label>Your Shares:</label>
+                            <span id="detailShares">0</span>
+                        </div>
+                        <div class="metric">
+                            <label>Market Value:</label>
+                            <span id="detailMarketValue">$0.00</span>
+                        </div>
+                        <div class="metric">
+                            <label>Gain/Loss:</label>
+                            <span id="detailGainLoss">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="openTradeModalFromDetail('buy')">Buy More</button>
+                <button class="btn btn-danger" onclick="openTradeModalFromDetail('sell')">Sell</button>
+                <button class="btn btn-secondary" onclick="closeModal('stock-detail-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/common.js"></script>
+    <script src="static/js/portfolio.js"></script>
+</body>
+</html>

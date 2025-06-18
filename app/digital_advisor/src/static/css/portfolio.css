@@ -1,0 +1,605 @@
+/* static/css/portfolio.css */
+
+.portfolio-page {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.portfolio-layout-wrapper {
+    padding: 2rem;
+}
+
+.portfolio-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Portfolio Header */
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-title-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.portfolio-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.portfolio-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Portfolio Summary Cards */
+.portfolio-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summary-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f4f6;
+}
+
+.total-value .summary-icon {
+    background: #ecfdf5;
+}
+
+.cash-balance .summary-icon {
+    background: #eff6ff;
+}
+
+.holdings-count .summary-icon {
+    background: #fef3c7;
+}
+
+.daily-change .summary-icon {
+    background: #f0f9ff;
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.summary-change {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.summary-change.positive {
+    color: #059669;
+}
+
+.summary-change.negative {
+    color: #dc2626;
+}
+
+/* Portfolio Content Grid */
+.portfolio-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.section-controls,
+.table-controls,
+.chart-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.form-select-small {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: white;
+}
+
+/* Portfolio Holdings Section */
+.portfolio-holdings-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-holdings-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Portfolio Holdings List */
+.portfolio-holdings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.portfolio-item {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.portfolio-item:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.portfolio-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-stock-symbol {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.portfolio-current-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #059669;
+}
+
+.portfolio-item-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.portfolio-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-detail-label {
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.portfolio-detail-value {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.portfolio-detail-value.positive {
+    color: #059669;
+}
+
+.portfolio-detail-value.negative {
+    color: #dc2626;
+}
+
+/* Chart Section */
+.portfolio-chart-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #6b7280;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.chart-btn:hover {
+    background: #f9fafb;
+}
+
+.chart-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Detailed Holdings Table */
+.detailed-holdings-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.detailed-holdings-section .section-header {
+    padding: 2rem 2rem 0 2rem;
+}
+
+.holdings-table-container {
+    overflow-x: auto;
+}
+
+.holdings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.holdings-table th {
+    background: #f9fafb;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.holdings-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.holdings-table th.sortable:hover {
+    background: #f3f4f6;
+}
+
+.holdings-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.holdings-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Table Cell Styling */
+.stock-symbol-cell {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.price-cell,
+.value-cell {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.gain-loss-cell {
+    font-weight: 600;
+}
+
+.gain-loss-cell.positive {
+    color: #059669;
+}
+
+.gain-loss-cell.negative {
+    color: #dc2626;
+}
+
+.percentage-cell {
+    font-weight: 600;
+}
+
+.percentage-cell.positive {
+    color: #059669;
+}
+
+.percentage-cell.negative {
+    color: #dc2626;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: #f9fafb;
+}
+
+.action-btn.buy {
+    color: #059669;
+    border-color: #059669;
+}
+
+.action-btn.sell {
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+.action-btn.view {
+    color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+/* Loading States */
+.loading-state,
+.loading-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: #6b7280;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    border-top-color: #3b82f6;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Empty State */
+.empty-portfolio {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-portfolio h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.empty-portfolio p {
+    color: #6b7280;
+    margin: 0 0 2rem 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Stock Detail Modal */
+.large-modal .modal-dialog {
+    max-width: 1200px;
+    width: 90vw;
+}
+
+.stock-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tradingview-widget-container {
+    width: 100%;
+    height: 400px;
+}
+
+.stock-detail-info {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.stock-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.metric label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.metric span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .portfolio-content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-chart-section {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-layout-wrapper {
+        padding: 1rem;
+    }
+    
+    .portfolio-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .portfolio-title-section h1 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-card {
+        padding: 1.5rem;
+    }
+    
+    .summary-value {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-item-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .holdings-table {
+        font-size: 0.8rem;
+    }
+    
+    .holdings-table th,
+    .holdings-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .large-modal .modal-dialog {
+        width: 95vw;
+        margin: 1rem;
+    }
+    
+    .stock-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .stock-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Digital Advisor</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/profile.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="profile-page">
+    <!-- Common Header -->
+    <header class="app-header">
+        <div class="app-header-content">
+            <a href="/index" class="app-brand">Digital Advisor</a>
+            <nav class="app-main-navigation">
+                <ul>
+                    <li><a href="/dashboard" class="nav-menu-link">Dashboard</a></li>
+                    <li><a href="/porfoliopage" class="nav-menu-link">Portfolio</a></li>
+                    <li><a href="/history" class="nav-menu-link">History</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile-actions">
+                <div class="user-balance-info">
+                    <span id="currentUsername">Welcome, User!</span>
+                    <div class="user-account-balance">Balance: $<span id="currentBalance">0.00</span></div>
+                </div>
+                <div class="profile-action-buttons">
+                    <button class="btn btn-danger" onclick="logoutUser()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-layout-wrapper">
+        <div class="profile-container">
+            <!-- Profile Header -->
+            <div class="profile-header-section">
+                <div class="profile-avatar">
+                    <div class="avatar-circle">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="profile-header-info">
+                    <h1 id="profileDisplayUsername">Loading...</h1>
+                    <p id="profileDisplayEmail">Loading...</p>
+                    <div class="profile-status">
+                        <span class="status-badge status-active">Active Account</span>
+                        <span class="last-updated">Last updated: <span id="lastUpdatedTime">Never</span></span>
+                    </div>
+                </div>
+                <div class="profile-header-actions">
+                    <button onclick="refreshUserProfile()" class="btn btn-secondary">🔄 Refresh</button>
+                    <button onclick="openModal('edit-profile-modal')" class="btn btn-primary">✏️ Edit Profile</button>
+                </div>
+            </div>
+
+            <!-- Profile Content Grid -->
+            <div class="profile-content-grid">
+                <!-- Account Information Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Account Information</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-row">
+                            <label>Username:</label>
+                            <span id="displayUsername">N/A</span>
+                        </div>
+                        <div class="info-row">
+                            <label>Email:</label>
+                            <span id="displayEmail">N/A</span>
+                        </div>
+                        <div class="info-row">
+                            <label>Account Type:</label>
+                            <span class="account-type">Standard</span>
+                        </div>
+                        <div class="info-row">
+                            <label>Member Since:</label>
+                            <span id="memberSince">2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Information Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Financial Overview</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="m17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-row balance-row">
+                            <label>Account Balance:</label>
+                            <span id="displayBalance" class="balance-amount">$0.00</span>
+                        </div>
+                        <div class="info-row">
+                            <label>Portfolio Value:</label>
+                            <span id="currentPortfolioValue" class="portfolio-value">$0.00</span>
+                        </div>
+                        <div class="info-row">
+                            <label>Total P&L:</label>
+                            <span id="totalProfitLoss" class="pl-amount">$0.00</span>
+                        </div>
+                        <div class="info-row">
+                            <label>P&L Percentage:</label>
+                            <span id="totalProfitLossPercent" class="pl-amount">0.00%</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button onclick="openModal('deposit-modal')" class="btn btn-success btn-small">💰 Deposit</button>
+                        <button onclick="openModal('withdraw-modal')" class="btn btn-warning btn-small">💸 Withdraw</button>
+                    </div>
+                </div>
+
+                <!-- Trading Statistics Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Trading Statistics</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalTradesCount">0</div>
+                                <div class="stat-label">Total Trades</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="activePredictionsCount">0</div>
+                                <div class="stat-label">Active Predictions</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="portfolioItemsCount">0</div>
+                                <div class="stat-label">Portfolio Items</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalInvestmentCount">$0</div>
+                                <div class="stat-label">Total Invested</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="activity-list" id="recentActivityList">
+                            <div class="activity-item">
+                                <div class="activity-icon">📊</div>
+                                <div class="activity-details">
+                                    <div class="activity-title">Portfolio loaded</div>
+                                    <div class="activity-time">Just now</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">👤</div>
+                                <div class="activity-details">
+                                    <div class="activity-title">Profile updated</div>
+                                    <div class="activity-time">Today</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Account Settings</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="m19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="settings-list">
+                            <div class="setting-item">
+                                <label>Email Notifications:</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label>Two-Factor Authentication:</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label>Trading Alerts:</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="tradingAlerts" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button onclick="saveSettings()" class="btn btn-primary btn-small">Save Settings</button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="19" cy="12" r="1"></circle>
+                            <circle cx="5" cy="12" r="1"></circle>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <div class="quick-actions-grid">
+                            <button onclick="window.location.href='/dashboard'" class="action-btn">
+                                <div class="action-icon">📊</div>
+                                <div class="action-label">Dashboard</div>
+                            </button>
+                            <button onclick="exportPortfolio()" class="action-btn">
+                                <div class="action-icon">📄</div>
+                                <div class="action-label">Export Portfolio</div>
+                            </button>
+                            <button onclick="openModal('change-password-modal')" class="action-btn">
+                                <div class="action-icon">🔒</div>
+                                <div class="action-label">Change Password</div>
+                            </button>
+                            <button onclick="refreshAllData()" class="action-btn">
+                                <div class="action-icon">🔄</div>
+                                <div class="action-label">Refresh Data</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Deposit Modal -->
+    <div id="deposit-modal" class="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-header-section">
+                <h3>Deposit Money</h3>
+                <span class="modal-close-button" onclick="closeModal('deposit-modal')">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="form-field-group">
+                    <label for="depositAmount">Amount to Deposit:</label>
+                    <input type="number" id="depositAmount" step="0.01" min="0.01" placeholder="0.00" class="form-input">
+                </div>
+                <div id="depositStatus" class="form-status-message"></div>
+                <div class="modal-actions">
+                    <button onclick="handleDeposit()" class="btn btn-primary">Deposit</button>
+                    <button onclick="closeModal('deposit-modal')" class="btn btn-outline">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div id="withdraw-modal" class="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-header-section">
+                <h3>Withdraw Money</h3>
+                <span class="modal-close-button" onclick="closeModal('withdraw-modal')">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="current-balance-display">
+                    Current Balance: $<span id="currentBalanceInWithdraw">0.00</span>
+                </div>
+                <div class="form-field-group">
+                    <label for="withdrawAmount">Amount to Withdraw:</label>
+                    <input type="number" id="withdrawAmount" step="0.01" min="0.01" placeholder="0.00" class="form-input">
+                </div>
+                <div id="withdrawStatus" class="form-status-message"></div>
+                <div class="modal-actions">
+                    <button onclick="handleWithdraw()" class="btn btn-primary">Withdraw</button>
+                    <button onclick="closeModal('withdraw-modal')" class="btn btn-outline">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-header-section">
+                <h3>Edit Profile</h3>
+                <span class="modal-close-button" onclick="closeModal('edit-profile-modal')">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="form-field-group">
+                    <label for="editUsername">Username:</label>
+                    <input type="text" id="editUsername" class="form-input">
+                </div>
+                <div id="editProfileStatus" class="form-status-message"></div>
+                <div class="modal-actions">
+                    <button onclick="saveProfileChanges()" class="btn btn-primary">Save Changes</button>
+                    <button onclick="closeModal('edit-profile-modal')" class="btn btn-outline">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/common.js"></script>
+    <script src="static/js/profile.js"></script>
+</body>
+</html>

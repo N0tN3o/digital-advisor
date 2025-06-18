@@ -1,0 +1,230 @@
+/* static/css/landing.css */
+/* Specific styles for the landing page */
+
+.logged-in-banner {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.logged-in-banner .btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.logged-in-banner .btn-primary {
+    background: white;
+    color: #28a745;
+    border: 2px solid white;
+}
+
+.logged-in-banner .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.landing-page body {
+    background-color: #f4f7f6; /* Light background for overall pages */
+}
+
+/* Hero Section */
+.main-hero-section {
+    background: linear-gradient(135deg, #3498db, #2c3e50); /* Gradient background */
+    color: #ffffff;
+    padding: 6rem 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh; /* Minimum height for hero */
+}
+
+.main-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.app-brand-large {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.app-slogan {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.main-hero-actions .btn {
+    margin: 0 0.75rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Features Section */
+.features-section {
+    padding: 4rem 1rem;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2.5rem auto 0;
+}
+
+.feature-item-card {
+    background-color: #f8f8f8;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.feature-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.feature-item-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.feature-item-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: #ffffff; /* Ensure SVG color is white */
+}
+
+.feature-item-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: #2c3e50;
+}
+
+.feature-item-card p {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Market Data Preview Section */
+.market-data-preview-section {
+    padding: 4rem 1rem;
+    background-color: #f4f7f6;
+    text-align: center;
+}
+
+.market-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2.5rem auto 0;
+}
+
+.stock-preview-item {
+    background-color: #ffffff;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.stock-preview-symbol {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.stock-preview-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.stock-preview-change {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.stock-preview-change.positive {
+    color: #28a745;
+}
+
+.stock-preview-change.negative {
+    color: #dc3545;
+}
+
+.market-data-actions {
+    margin-top: 3rem;
+}
+
+/* Responsive adjustments for landing page */
+@media (max-width: 768px) {
+    .main-hero-section {
+        padding: 4rem 1rem;
+        min-height: 50vh;
+    }
+
+    .app-brand-large {
+        font-size: 2.5rem;
+    }
+
+    .app-slogan {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .main-hero-actions .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .feature-cards-grid {
+        grid-template-columns: 1fr; /* Stack features on small screens */
+    }
+
+    .market-data-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjust for smaller stock cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .app-brand-large {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Digital Advisor</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" href="static/css/auth.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-page-wrapper">
+        <!-- Auth Navigation -->
+        <nav class="auth-navigation">
+            <a href="/index" class="app-brand-small">Digital Advisor</a>
+            <div class="auth-nav-links">
+                <a href="/index" class="auth-nav-link">Home</a>
+                <a href="/login" class="auth-nav-link">Login</a>
+            </div>
+        </nav>
+
+        <!-- Registration Form and Side Panel -->
+        <div class="auth-form-container">
+            <div class="auth-form-card">
+                <div class="auth-form-header">
+                    <h1>Create Account</h1>
+                    <p>Join thousands of traders on our platform</p>
+                </div>
+
+                <div class="form-status-message" id="authStatus"></div>
+
+                <form class="login-registration-form" id="registerForm">
+                    <div class="form-field-group">
+                        <label class="field-label" for="username">Username</label>
+                        <input type="text" class="form-input" id="username" name="username" required>
+                        <small class="form-help">Choose a unique username (3-20 characters)</small>
+                    </div>
+
+                    <div class="form-field-group">
+                        <label class="field-label" for="userEmail">Email Address</label>
+                        <input type="email" class="form-input" id="userEmail" name="email" required>
+                    </div>
+
+                    <div class="form-field-group">
+                        <label class="field-label" for="userPassword">Password</label>
+                        <input type="password" class="form-input" id="userPassword" name="password" required>
+                        <small class="form-help">Minimum 8 characters with letters and numbers</small>
+                    </div>
+
+                    <div class="form-field-group">
+                        <label class="field-label" for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-input" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+
+                    <div class="form-field-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div class="form-field-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter">
+                            Subscribe to market updates and trading tips
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-full">Create Account</button>
+                </form>
+
+                <div class="auth-card-footer">
+                    <p>Already have an account? <a href="/login">Sign in here</a></p>
+                </div>
+            </div>
+
+            <!-- Side Panel -->
+            <div class="auth-sidebar">
+                <div class="sidebar-content">
+                    <h2>Why Choose Us?</h2>
+                    <div class="benefits-feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <div>
+                                <h4>Fast Execution</h4>
+                                <p>Lightning-fast trade execution with real-time market data.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">📊</div>
+                            <div>
+                                <h4>Advanced Analytics</h4>
+                                <p>Comprehensive portfolio analysis and performance tracking.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🔐</div>
+                            <div>
+                                <h4>Bank-Level Security</h4>
+                                <p>Your data and funds are protected with enterprise-grade security.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">💡</div>
+                            <div>
+                                <h4>Smart Predictions</h4>
+                                <p>AI-powered insights to help you make informed trading decisions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="registration-bonus-info">
+                        <h3>Welcome Bonus</h3>
+                        <p>Start with <strong>$10,000</strong> virtual funds to practice trading!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/js/common.js"></script>
+    <script src="static/js/auth.js"></script>
+</body>
+</html>
